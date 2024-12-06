@@ -47,10 +47,6 @@ if choice == 'Gợi ý sản phẩm theo thông tin khách hàng':
     products = pd.read_csv('San_pham.csv')
     reviews = pd.read_csv('Danh_gia_new.csv')
 
-    # Đọc model được lưu trữ trong file best_algorithm.pkl
-    with open('best_algorithm.pkl', 'rb') as f:
-        best_algorithm_new = pickle.load(f)
-
     # Giao diện Streamlit
     st.title("Hệ thống gợi ý sản phẩm theo thông tin khách hàng")
 
@@ -78,6 +74,10 @@ if choice == 'Gợi ý sản phẩm theo thông tin khách hàng':
                 (customers['ho_ten'].str.contains(ho_ten_input, case=False, na=False)) &
                 (customers['ma_khach_hang'] == ma_khach_hang_input)
             ]
+
+            # Đọc model được lưu trữ trong file best_algorithm.pkl
+            with open('best_algorithm.pkl', 'rb') as f:
+                best_algorithm_new = pickle.load(f)
 
             if not customer_match.empty:
                 st.success(f"Thông tin khách hàng hợp lệ: {ho_ten_input} (Mã: {ma_khach_hang_input})")
