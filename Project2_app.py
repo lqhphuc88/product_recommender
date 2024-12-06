@@ -14,15 +14,6 @@ st.sidebar.write("""#### Giảng viên hướng dẫn: Cô Khuất Thùy Phươn
 #st.sidebar.write("""#### Thời gian thực hiện: 12/2024""")
 if choice == 'Gợi ý sản phẩm theo thông tin khách hàng':    
     st.subheader("Gợi ý sản phẩm theo thông tin khách hàng")
-    # Đọc dữ liệu khách hàng, sản phẩm, và đánh giá
-    customers = pd.read_csv('Khach_hang.csv')
-    products = pd.read_csv('San_pham.csv')
-    reviews = pd.read_csv('Danh_gia_new.csv')
-
-    # Đọc model được lưu trữ trong file best_algorithm.pkl
-    with open('best_algorithm.pkl', 'rb') as f:
-        best_algorithm_new = pickle.load(f)
-
     # Hàm để kiểm tra khách hàng và đề xuất sản phẩm
     def recommend_products_for_customer(ma_khach_hang, data_sub_pandas, products_sub_pandas, best_algorithm):
         # Kiểm tra nếu khách hàng đã đánh giá sản phẩm
@@ -50,6 +41,15 @@ if choice == 'Gợi ý sản phẩm theo thông tin khách hàng':
         )
 
         return enriched_top_5_df, None
+    
+    # Đọc dữ liệu khách hàng, sản phẩm, và đánh giá
+    customers = pd.read_csv('Khach_hang.csv')
+    products = pd.read_csv('San_pham.csv')
+    reviews = pd.read_csv('Danh_gia_new.csv')
+
+    # Đọc model được lưu trữ trong file best_algorithm.pkl
+    with open('best_algorithm.pkl', 'rb') as f:
+        best_algorithm_new = pickle.load(f)
 
     # Giao diện Streamlit
     st.title("Hệ thống gợi ý sản phẩm theo thông tin khách hàng")
