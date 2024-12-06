@@ -75,12 +75,12 @@ if choice == 'Gợi ý sản phẩm theo thông tin khách hàng':
                 (customers['ma_khach_hang'] == ma_khach_hang_input)
             ]
 
-            # Đọc model được lưu trữ trong file best_algorithm.pkl
-            with open('best_algorithm.pkl', 'rb') as f:
-                best_algorithm_new = pickle.load(f)
-
             if not customer_match.empty:
                 st.success(f"Thông tin khách hàng hợp lệ: {ho_ten_input} (Mã: {ma_khach_hang_input})")
+
+                # Đọc model được lưu trữ trong file best_algorithm.pkl
+                with open('best_algorithm.pkl', 'rb') as f:
+                    best_algorithm_new = pickle.load(f)
 
                 # Gợi ý sản phẩm
                 recommendations, error = recommend_products_for_customer(
