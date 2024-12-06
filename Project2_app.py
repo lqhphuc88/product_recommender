@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+from surprise import Reader, Dataset, SVD, SVDpp, NMF, SlopeOne, KNNBasic, KNNBaseline, KNNWithMeans, KNNWithZScore, CoClustering, BaselineOnly
+from surprise.model_selection.validation import cross_validate
 import pickle
 
 # GUI
